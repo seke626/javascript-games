@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock-Paper-Scissors</title>
+    <style>
+        /* CSS for Rock-Paper-Scissors game */
+        .options {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .option {
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Rock-Paper-Scissors</h1>
+    <div class="options">
+        <button class="option" onclick="playRPS('rock')">Rock</button>
+        <button class="option" onclick="playRPS('paper')">Paper</button>
+        <button class="option" onclick="playRPS('scissors')">Scissors</button>
+    </div>
+    <p class="message" id="rps-result"></p>
+
+    <script>
+        const options = ['rock', 'paper', 'scissors'];
+        const rpsResult = document.getElementById('rps-result');
+
+        function playRPS(userChoice) {
+            const computerChoice = options[Math.floor(Math.random() * options.length)];
+
+            if (userChoice === computerChoice) {
+                rpsResult.textContent = `It's a tie! You both chose ${userChoice}.`;
+            } else if (
+                (userChoice === 'rock' && computerChoice === 'scissors') ||
+                (userChoice === 'scissors' && computerChoice === 'paper') ||
+                (userChoice === 'paper' && computerChoice === 'rock')
+            ) {
+                rpsResult.textContent = `You win! ${userChoice} beats ${computerChoice}.`;
+            } else {
+                rpsResult.textContent = `You lose! ${computerChoice} beats ${userChoice}.`;
+            }
+        }
+    </script>
+</body>
+</html>
